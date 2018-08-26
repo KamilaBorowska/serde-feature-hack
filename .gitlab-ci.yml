@@ -1,0 +1,51 @@
+test:1.26:
+  script: &test_script
+  - &print_version rustc --version && cargo --version
+  - cargo test --verbose
+  image: rust:1.26
+
+test:stable:
+  script: *test_script
+  image: rust:latest
+
+test:beta:
+  script: *test_script
+  image: liuchong/rustup:beta
+
+test:nightly:
+  script: *test_script
+  image: rustlang/rust:nightly
+
+clippy:
+  script:
+  - *print_version
+  - rustup component add clippy-preview
+  - cargo clippy --verbose
+  image: rustlang/rust:nightly
+
+rustfmt:
+  script:
+  - *print_version
+  - rustup component add rustfmt-preview
+  - cargo fmt -- --check
+  image: rustlang/rust:nightly
+
+pages:
+  stage: deploy
+  script:
+  - *print_version
+  - cargo doc --all-features
+  - mv target/doc public
+  - |
+    echo "
+      <!DOCTYPE html>
+      <title>Redirection page</title>
+      <meta http-equiv=refresh content='0; url=serde_feature_hack/'>
+      <p> Please check out <a href='serde_feature_hack/'>serde-feature-hack</a> documentation.
+    " > public/index.html
+  artifacts:
+    paths:
+    - public
+  image: rustlang/rust:nightly
+  only:
+  - master
