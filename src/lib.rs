@@ -10,11 +10,10 @@
 //! serde = ["serde-feature-hack", "some-other-dependency"]
 //! ```
 //!
-//! Then, you can use `serde` like you normally would, except the crate name is
-//! `serde_feature_hack`. It's possible to import it with the usual `serde` name.
+//! Then, you can use `serde` like you normally would.
 //!
 //! ```
-//! extern crate serde_feature_hack as serde;
+//! extern crate serde;
 //! extern crate serde_json;
 //!
 //! use serde::{Serialize, Serializer};
@@ -31,5 +30,5 @@
 //! ```
 
 #![no_std]
-extern crate serde;
-pub use serde::*;
+
+pub use real_serde::*;
