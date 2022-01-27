@@ -15,7 +15,7 @@ name = "serde"
 
 [badges]
 gitlab = { repository = "KonradBorowski/serde-feature-hack" }
-maintenance = { status = "actively-developed" }
+maintenance = { status = "deprecated" }
 
 [dependencies.real_serde]
 version = "1.0.75"
