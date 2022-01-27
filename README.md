@@ -1,5 +1,9 @@
 # serde-feature-hack
 
+**DEPRECATED**: Since Rust 1.31 it's possible to
+[rename dependencies](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#renaming-dependencies-in-cargotoml).
+There is no need to use this crate anymore.
+
 A hack to allow having a feature named `serde` which doesn't just depend on serde
 
 In Cargo.toml, you can do the following:
